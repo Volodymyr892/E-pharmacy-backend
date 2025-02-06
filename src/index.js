@@ -1,3 +1,9 @@
+import { initMangoDB } from "./db/initMangoDB.js";
 import { startServer } from "./server.js";
 
-startServer();
+const bootstrap = async ()=>{
+    await initMangoDB();
+    startServer();
+};
+
+bootstrap();

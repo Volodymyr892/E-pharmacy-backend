@@ -2,6 +2,7 @@ import express from 'express';
 // import pino from 'pino-http';
 import cors from 'cors';
 import  getEnvVar  from './utils/getEnvVar.js';
+import productRouter from "./routers/products.js";
 
 
 
@@ -19,17 +20,20 @@ app.get("/", (req, res)=>{
         message:'Hello world'
     });
 });
+
+app.use(productRouter);
 app.use('*', (req, res, next)=>{
     res.status(404).json({
         message:'Route not found'
     });
 });
 app.use((err, req, res, next)=>{
-res.status(500).json({
-    mesagge: 'Something went wrong',
-    error: err.mesagge,
+    res.status(500).json({
+        mesagge: 'Something went wrong',
+        error: err.mesagge,
+    });
 });
-});
+
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
