@@ -1,25 +1,12 @@
 import { Router } from "express";
-import { getAllproduct, getProductBuId } from '../services/product.js';
+import { getProductController, getContactByIdController } from "../controllers/product.js";
+import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 const router = Router();
 
-router.get('/api/products/', async (req, res)=>{
-    const products = await getAllproduct();
-    res.status(200).json({
-        data: products,
-    });
-});
-router.get('/api/products/:id', async(req, res, next)=>{
-    const {id} = req.params;
-    const product = await getProductBuId(id);
+router.get('/api/products/', 
+    ctrlWrapper(getProductController));
 
-    if(!product){
-        res.status(404).json({
-            message: 'Product not found'
-        });
-    }
-    res.status(200).json({
-        data: product,
-    });
-});
+router.get('/api/products/:id',
+    ctrlWrapper(getContactByIdController));
 
 export default router;
