@@ -4,7 +4,8 @@ import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 const router = Router();
 
 router.get('/api/products/', 
-    ctrlWrapper(getProductController));
+    ctrlWrapper(getProductController)
+);
 
 router.get('/api/products/:id',
     ctrlWrapper(getContactByIdController));

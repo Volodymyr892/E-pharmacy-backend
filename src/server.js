@@ -3,6 +3,8 @@ import pino from 'pino-http';
 import cors from 'cors';
 import  getEnvVar  from './utils/getEnvVar.js';
 import productRouter from "./routers/products.js";
+import reviewsRouter from "./routers/reviews.js";
+import pharmaciesRouter from "./routers/pharmacies.js";
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFounndhandler.js';
 
@@ -34,6 +36,8 @@ app.get("/", (req, res)=>{
 });
 
 app.use(productRouter);
+app.use(reviewsRouter);
+app.use(pharmaciesRouter);
 
 
 app.use('*', notFoundHandler);
