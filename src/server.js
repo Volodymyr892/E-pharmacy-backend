@@ -2,6 +2,7 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import  getEnvVar  from './utils/getEnvVar.js';
+import userRouter from "./routers/auth.js";
 import productRouter from "./routers/products.js";
 import reviewsRouter from "./routers/reviews.js";
 import pharmaciesRouter from "./routers/pharmacies.js";
@@ -19,6 +20,7 @@ export const startServer = () =>{
         type: ['application/json', 'application/vnd.api+json'],
         limit: '100kb',
     }));
+
 app.use(cors());
 app.use(
     pino({
@@ -38,6 +40,8 @@ app.get("/", (req, res)=>{
 app.use(productRouter);
 app.use(reviewsRouter);
 app.use(pharmaciesRouter);
+
+app.use(userRouter);
 
 
 app.use('*', notFoundHandler);
