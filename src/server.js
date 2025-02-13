@@ -7,7 +7,8 @@ import productRouter from "./routers/products.js";
 import reviewsRouter from "./routers/reviews.js";
 import pharmaciesRouter from "./routers/pharmacies.js";
 import { errorHandler } from './middlewares/errorHandler.js';
-import { notFoundHandler } from './middlewares/notFounndhandler.js';
+import { notFoundHandler } from './middlewares/notFounndHandler.js';
+import cookieParser from 'cookie-parser';
 
 
 
@@ -22,6 +23,7 @@ export const startServer = () =>{
     }));
 
 app.use(cors());
+app.use(cookieParser());
 app.use(
     pino({
       transport: {
