@@ -2,10 +2,14 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import  getEnvVar  from './utils/getEnvVar.js';
+
 import userRouter from "./routers/auth.js";
 import productRouter from "./routers/products.js";
 import reviewsRouter from "./routers/reviews.js";
 import pharmaciesRouter from "./routers/pharmacies.js";
+import cartRouter from "./routers/carts.js";
+
+
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFounndHandler.js';
 import cookieParser from 'cookie-parser';
@@ -44,6 +48,7 @@ app.use(reviewsRouter);
 app.use(pharmaciesRouter);
 
 app.use(userRouter);
+app.use(cartRouter);
 
 
 app.use('*', notFoundHandler);
