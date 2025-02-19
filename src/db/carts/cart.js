@@ -55,7 +55,7 @@ const orderSchema = new Schema(
         },
         paymentMethod:{
             type:String,
-            enum: ["Cash on Deliver", "Bank"],
+            enum: ["Cash On Delivery", "Bank"],
             required: true,
         },
         shippingAddress: {
