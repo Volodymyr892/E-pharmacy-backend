@@ -1,0 +1,39 @@
+
+  type: object
+  required:
+    - _id
+    - name
+    - suppliers
+    - stock
+    - price
+    - category
+    - photo
+  properties:
+    _id:
+      description: "Product ID"
+      type: string
+      example: "65e4decdd286b30065d54af9"
+    name:
+      description: "Product name"
+      type: string
+      example: "Apple iPhone 13"
+    suppliers:
+      description: "Product supplier"
+      type: string
+      example: "Apple Inc."
+    stock:
+      description: "Available stock quantity"
+      type: number
+      example: 150
+    price:
+      description: "Product price in USD"
+      type: number
+      example: 999.99
+    category:
+      description: "Product category"
+      type: string
+      example: "Electronics"
+    photo:
+      description: "Product image URL"
+      type: string
+      example: "https://example.com/image.jpg"

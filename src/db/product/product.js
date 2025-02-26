@@ -19,7 +19,6 @@ const productSchema = new Schema(
         suppliers:{
             type: String,
             required: true,
-            // enum:['Square', 'Acme', 'Beximco', 'ACI']
         },
         stock:{
             type: Number,
