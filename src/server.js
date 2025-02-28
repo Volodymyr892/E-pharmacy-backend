@@ -13,6 +13,8 @@ import cartRouter from "./routers/carts.js";
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFounndHandler.js';
 import cookieParser from 'cookie-parser';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
+import { UPLOAD_DIR } from './constants/index.js';
 
 
 
@@ -49,6 +51,9 @@ app.use(pharmaciesRouter);
 
 app.use(userRouter);
 app.use(cartRouter);
+
+app.use('/uploads', express.static(UPLOAD_DIR));
+app.use('/api-docs', swaggerDocs());
 
 
 app.use('*', notFoundHandler);
