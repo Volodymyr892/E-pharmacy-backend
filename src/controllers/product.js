@@ -1,10 +1,15 @@
 import { getAllproduct, getProductBuId } from '../services/product.js';
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
 
 
 export const getProductController = async (req, res,)=>{
-    const products = await getAllproduct();
+    const {page, perPage} = parsePaginationParams(req.query);
+    const products = await getAllproduct({
+        page,
+        perPage,
+    });
     res.json({
         status: 200,
         message: 'Successfully fpund product',

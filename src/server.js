@@ -45,6 +45,7 @@ app.get("/", (req, res)=>{
     });
 });
 
+app.use('/api-docs', swaggerDocs());
 app.use(productRouter);
 app.use(reviewsRouter);
 app.use(pharmaciesRouter);
@@ -53,7 +54,6 @@ app.use(userRouter);
 app.use(cartRouter);
 
 app.use('/uploads', express.static(UPLOAD_DIR));
-app.use('/api-docs', swaggerDocs());
 
 
 app.use('*', notFoundHandler);

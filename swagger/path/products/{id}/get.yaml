@@ -3,6 +3,8 @@ tags:
 summary: Get products by id
 operationId: getProducts
 description: 'Get products by id'
+security:
+  - bearerAuth: []
 parameters:
   - in: path
     name: id
