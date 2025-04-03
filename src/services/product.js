@@ -1,8 +1,13 @@
-
+import {SORT_ORDER} from "../constants/index.js";
 import { ProductColections } from "../db/product/product.js";
 import { calculatePaginationData } from "../utils/calculatePaginationData.js";
 
-export const getAllproduct = async({page, perPage}) =>{
+export const getAllproduct = async({
+    page = 1, 
+    perPage = 10,
+    sortOrder = SORT_ORDER.ASC,
+    sortBy = '_id',
+}) => {
     const limit = perPage;
     const skip = (page - 1) * perPage; 
 
@@ -11,7 +16,11 @@ export const getAllproduct = async({page, perPage}) =>{
         .merge(productsQouery)
         .countDocuments();
 
-    const products = await productsQouery.skip(skip).limit(limit).exec();
+    const products = await productsQouery
+    .skip(skip)
+    .limit(limit)
+    .sort({[sortBy] : sortOrder })
+    .exec();
 
     const paginationData = calculatePaginationData(productsCount, perPage, page);
 

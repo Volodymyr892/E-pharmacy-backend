@@ -33,6 +33,17 @@ const productSchema = new Schema(
             required: true,
             // enum: []
         },
+        description : {
+            type: String,
+            required: true,
+        },
+        reviews: [
+            {
+                user: { type: String, required: true },
+                rating: { type: Number, required: true, min: 1, max: 5 },
+                comment: { type: String, required: true },
+            },
+        ],
     },
     {
         timestamps: true,
