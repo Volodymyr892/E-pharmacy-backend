@@ -7,14 +7,15 @@ export const getAllproduct = async({
     perPage = 10,
     sortOrder = SORT_ORDER.ASC,
     sortBy = '_id',
+    filter = {}
 }) => {
     const limit = perPage;
     const skip = (page - 1) * perPage; 
 
-    const productsQouery = ProductColections.find();
-    const productsCount = await ProductColections.find()
-        .merge(productsQouery)
-        .countDocuments();
+    const productsQouery = ProductColections.find(filter);
+    const productsCount = await ProductColections.find(filter).countDocuments();
+        // .merge(productsQouery)
+        // .countDocuments();
 
     const products = await productsQouery
     .skip(skip)
