@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "Students app",
+    "title": "Products app",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -19,12 +19,20 @@
   ],
   "tags": [
     {
-      "name": "Students",
-      "description": "Operations about users."
+      "name": "Products",
+      "description": "Operations about."
     },
     {
-      "name": "Auth",
-      "description": "Auth operations."
+      "name": "Cart",
+      "description": "Operations cart."
+    },
+    {
+      "name": "User",
+      "description": "Operations register."
+    },
+    {
+      "name": "Stores",
+      "description": "Operations stores."
     }
   ],
   "paths": {
@@ -36,6 +44,11 @@
         "summary": "Get products by id",
         "operationId": "getProducts",
         "description": "Get products by id",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",

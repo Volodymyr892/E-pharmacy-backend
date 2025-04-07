@@ -44,8 +44,8 @@ app.get("/", (req, res)=>{
         message:'Hello world'
     });
 });
-
 app.use('/api-docs', swaggerDocs());
+
 app.use(productRouter);
 app.use(reviewsRouter);
 app.use(pharmaciesRouter);
