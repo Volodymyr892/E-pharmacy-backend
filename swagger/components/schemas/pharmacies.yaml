@@ -1,0 +1,44 @@
+type: object
+required: 
+  - name
+  - address
+  - city
+  - phone 
+  - rating
+properties:
+  _id:
+    type: string
+    description: Auto-generated ID
+  name:
+    type: string
+    description: Name of the pharmacy
+  address: 
+    type: string
+    description: Pharmacy's address
+  city:
+    type: string
+    description: City where the pharmacy is located
+  phone:
+    type: integer
+    description: Pharmacy contact 
+  rating: 
+    type: number
+    format: float
+    description: Rating of the pharmacy (1 to 5)
+  createdAt: 
+    type: string
+    format: data-time
+    description: Data of creation
+  updateAt: 
+    type: string
+    format: data-time 
+    description: Last Updated  timestamp
+example:
+  _id: "6612db93bcfa2e146e3e0caa"
+  name: "HealCare Pharmacy"
+  address: "123 main Street"
+  city: "New York"
+  phone: 1234567890
+  rating: 4.8
+  createdAt: "2025-04-07T10:30:00.000Z"
+  updatedAt: "2025-04-07T10:30:00.000Z"

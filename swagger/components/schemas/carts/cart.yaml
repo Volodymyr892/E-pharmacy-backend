@@ -1,0 +1,31 @@
+type: object
+properties:
+  _id:
+    type: string
+    format: objectId
+    description: Unique cart identifier
+  userId: 
+    type: string
+    format: objectId
+    description: User ID
+  items: 
+    type: array
+    items: 
+      $ref: "./cartItem.yaml"
+  createdAt: 
+    type: string
+    format: data-time
+  updatedAt:
+    type: string
+    format: data-time
+required:
+  - userId
+  - items
+example:
+  _id: "6613e90013c5e9481f27db8a"
+  userId: "6613e7c813c5e9481f27db87"
+  items:
+    - productId: "6613e7e013c5e9481f27db88"
+      quantity: 2
+  createdAt: "2025-04-08T09:25:00.000Z"
+  updatedAt: "2025-04-08T09:45:00.000Z"
