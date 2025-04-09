@@ -1,0 +1,36 @@
+tags: 
+  - Cart
+summary: Get of cart
+operationId: getCart
+description: "get user orders"
+security:
+  - bearerAuth: []
+responses: 
+    '200':
+      description: Successfully found carts!
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status: 
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Successfully found carts!
+              data: 
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items: 
+                      $ref: "../../components/schemas/carts/cart.yaml"
+    '401':
+      $ref: ../../components/responses/401.yaml

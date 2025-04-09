@@ -1,7 +1,7 @@
 tags:
   - Products
 summary: Get products by id
-operationId: getProducts
+operationId: getProductById
 description: 'Get products by id'
 security: []
 parameters:
@@ -32,5 +32,4 @@ responses:
             data:
               type: object
               $ref: '../../../components/schemas/products.yaml'
-  # '401':
-  #   $ref: '../../../components/responses/401.yaml'
+  

@@ -5,11 +5,11 @@ properties:
     format: objectId
     description: ID product
     example: "6613e7e013c5e9481f27db88"
-  quntiti: 
+  quantity: 
     type: integer
     default: 1
     description: quantity of goods
     example: 2
-  required:
-    - productId
-    - quantity
+required:
+  - productId
+  - quantity

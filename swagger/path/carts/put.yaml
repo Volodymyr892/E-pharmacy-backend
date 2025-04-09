@@ -1,0 +1,64 @@
+tags: 
+  - Cart
+summary: Update cart
+operationId: updateCart
+description: "get user orders"
+security:
+  - bearerAuth: []
+reguestBody: 
+  required: true
+  content: 
+    application/json:
+      schema:
+        type: object
+        required:
+          - status
+          - message
+          - data
+        properties: 
+          status: 
+            type: integer
+            example: 200
+          message:
+            type: string
+            example: Successfully updated cart!
+          data: 
+            type: object
+            required:
+              - data 
+            properties:
+              data:
+                type: array
+                items: 
+                  $ref: "../../components/schemas/carts/cart.yaml"
+responses: 
+    '200':
+      description: Successfully updated cart!
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status: 
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Successfully updated cart!
+              data: 
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items: 
+                      $ref: "../../components/schemas/carts/cart.yaml"
+    '400':
+      $ref: ../../components/responses/400.yaml
+    '401':
+      $ref: ../../components/responses/401.yaml
