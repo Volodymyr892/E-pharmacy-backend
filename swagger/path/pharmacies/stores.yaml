@@ -1,0 +1,33 @@
+tags: 
+  - Stores
+summary: Get of detais pharmacies
+operationId: getNearestDetails
+description: "Get list of nearest details pharmacies"
+security: []
+responses:
+  '200':
+    description: Successfully found details pharmacies!
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            - status
+            - message
+            - data 
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully details found pharmacies!
+            data: 
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: "../../components/schemas/pharmacies/pharmacies.yaml"

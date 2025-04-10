@@ -1,0 +1,21 @@
+type: object
+properties: 
+  fullName: 
+    type: string
+  phone: 
+    type: string
+  address: 
+    type: string
+  city: 
+    type: string
+  zipCode: 
+    type: string
+  country: 
+    type: string
+example:
+  fullName: John Doe
+  phone:  "+380991234567"
+  address: "123 Main St"
+  city: "Kyiv"
+  zipCode: "01001"
+  country: "Ukraine"

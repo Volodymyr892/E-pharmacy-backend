@@ -1,0 +1,39 @@
+type: object
+required: 
+  - userId
+  - items
+  - totalAmount
+  - paymentMethod
+properties:
+  userId: 
+    type: string
+    format: uuid
+    example: "60f6d4c2e1d3c44d3cae1a01"
+  items: 
+    type: array
+    items:
+      $ref: "../carts/orderItem.yaml"
+  totalAmount:
+    type: number
+    example: 599.98
+  paymentMethod:
+    type: string
+    enum: 
+      - Cash On Delivery 
+      - Bank
+    example: "Cash On Delivery"
+  shippingAddress: 
+    $ref: "../carts/shippingAddress.yaml"
+  status:
+    type: string
+    enum: 
+      - Pending
+      - Paid
+      - Shipped
+    default: "Pending"
+  createdAt: 
+    type: string
+    format: data-time
+  updateAt: 
+    type: string
+    format: data-time

@@ -20,9 +20,22 @@ servers:
   - url: http://localhost:3000
   - url: https://example.com/api/v1
 paths:
-  /api/cart:
+  /api/customer-reviews:
+    get: 
+      $ref: "../swagger/path/pharmacies/reviews.yaml"
+  /api/stores:
+    get: 
+      $ref: "../swagger/path/pharmacies/stores.yaml"
+  /api/stores/nearest:
+    get: 
+      $ref: "../swagger/path/pharmacies/nearest.yaml"
+  /api/cart/checkout:
+    post: 
+      $ref: "../swagger/path/carts/post.yaml"
+  /api/cart/update:
     put: 
       $ref: "../swagger/path/carts/put.yaml"
+  /api/cart:
     get: 
       $ref: "../swagger/path/carts/get.yaml"
   /api/products:

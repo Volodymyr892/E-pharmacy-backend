@@ -36,7 +36,273 @@
     }
   ],
   "paths": {
-    "/api/cart": {
+    "/api/customer-reviews": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "summary": "Get of reviews",
+        "operationId": "getReviews",
+        "description": "Get of Reviews",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successfully reviews!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully of reviews!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/reviews"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stores": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "summary": "Get of detais pharmacies",
+        "operationId": "getNearestDetails",
+        "description": "Get list of nearest details pharmacies",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successfully found details pharmacies!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully details found pharmacies!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/pharmacies"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stores/nearest": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "summary": "Get of pharmacies",
+        "operationId": "getNearest",
+        "description": "Get list of nearest pharmacies",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successfully found pharmacies!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found pharmacies!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/pharmacies"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cart/checkout": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Create order",
+        "operationId": "createOrder",
+        "description": "Create a order with payload",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "reguestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "userId",
+                  "items",
+                  "totalAmount",
+                  "paymentMethod"
+                ],
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "60f6d4c2e1d3c44d3cae1a01"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../../components/schemas/carts/orderItem.yaml"
+                    }
+                  },
+                  "totalAmount": {
+                    "type": "number",
+                    "example": 599.98
+                  },
+                  "paymentMethod": {
+                    "type": "string",
+                    "enum": [
+                      "Cash On Delivery",
+                      "Bank"
+                    ],
+                    "example": "Cash On Delivery"
+                  },
+                  "shippingAddress": {
+                    "$ref": "../../components/schemas/carts/shippingAddress.yaml"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Pending",
+                      "Paid",
+                      "Shipped"
+                    ],
+                    "default": "Pending"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "data-time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "data-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Creates a order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully created a order!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/order"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/api/cart/update": {
       "put": {
         "tags": [
           "Cart"
@@ -135,7 +401,9 @@
             "$ref": "#/components/responses/401"
           }
         }
-      },
+      }
+    },
+    "/api/cart": {
       "get": {
         "tags": [
           "Cart"
@@ -377,6 +645,203 @@
       }
     },
     "schemas": {
+      "reviews": {
+        "type": "object",
+        "required": [
+          "name",
+          "testimonial"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "66163bca7b5c1c0013d0c5e9"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "testimonial": {
+            "type": "string",
+            "example": "This service was excellent"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-04-10T12:34:56.789Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-04-10T12:34:56.789Z"
+          }
+        }
+      },
+      "pharmacies": {
+        "type": "object",
+        "required": [
+          "name",
+          "address",
+          "city",
+          "phone",
+          "rating"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Auto-generated ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the pharmacy"
+          },
+          "address": {
+            "type": "string",
+            "description": "Pharmacy's address"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the pharmacy is located"
+          },
+          "phone": {
+            "type": "integer",
+            "description": "Pharmacy contact"
+          },
+          "rating": {
+            "type": "number",
+            "format": "float",
+            "description": "Rating of the pharmacy (1 to 5)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "data-time",
+            "description": "Data of creation"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "data-time",
+            "description": "Last Updated  timestamp"
+          }
+        },
+        "example": {
+          "_id": "6612db93bcfa2e146e3e0caa",
+          "name": "HealCare Pharmacy",
+          "address": "123 main Street",
+          "city": "New York",
+          "phone": 1234567890,
+          "rating": 4.8,
+          "createdAt": "2025-04-07T10:30:00.000Z",
+          "updatedAt": "2025-04-07T10:30:00.000Z"
+        }
+      },
+      "orderItem": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        },
+        "example": {
+          "productId": "60f6d4c2e1d3c44d3cae1a02",
+          "name": "T-shirt",
+          "price": "number",
+          "quantity": 2
+        }
+      },
+      "shippingAddress": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "fullName": "John Doe",
+          "phone": "+380991234567",
+          "address": "123 Main St",
+          "city": "Kyiv",
+          "zipCode": "01001",
+          "country": "Ukraine"
+        }
+      },
+      "order": {
+        "type": "object",
+        "required": [
+          "userId",
+          "items",
+          "totalAmount",
+          "paymentMethod"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "60f6d4c2e1d3c44d3cae1a01"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/orderItem"
+            }
+          },
+          "totalAmount": {
+            "type": "number",
+            "example": 599.98
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "Cash On Delivery",
+              "Bank"
+            ],
+            "example": "Cash On Delivery"
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/shippingAddress"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Paid",
+              "Shipped"
+            ],
+            "default": "Pending"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "data-time"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "data-time"
+          }
+        }
+      },
       "cartItem": {
         "type": "object",
         "properties": {

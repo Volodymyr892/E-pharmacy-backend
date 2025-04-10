@@ -1,0 +1,16 @@
+type: object
+properties:
+  productId:
+    type: string
+    format: uuid
+  name: 
+    type: string
+  price: 
+    type: number
+  quantity:
+    type: integer
+example:
+  productId: "60f6d4c2e1d3c44d3cae1a02"
+  name: "T-shirt"
+  price: number
+  quantity: 2

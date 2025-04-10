@@ -1,0 +1,74 @@
+tags: 
+  - Cart
+summary: Create order
+operationId: createOrder
+description: 'Create a order with payload'
+security: 
+  - bearerAuth: []
+reguestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema: 
+        type: object
+        required:
+          - userId
+          - items
+          - totalAmount
+          - paymentMethod
+        properties:
+          userId: 
+            type: string
+            format: uuid
+            example: "60f6d4c2e1d3c44d3cae1a01"
+          items: 
+            type: array
+            items: 
+              $ref: "../../components/schemas/carts/orderItem.yaml"
+          totalAmount:
+            type: number
+            example: 599.98
+          paymentMethod: 
+            type: string
+            enum: 
+              - Cash On Delivery 
+              - Bank
+            example: Cash On Delivery
+          shippingAddress: 
+            $ref: "../../components/schemas/carts/shippingAddress.yaml"
+          status: 
+            type: string
+            enum: 
+              - Pending
+              - Paid
+              - Shipped
+            default: Pending
+          createdAt: 
+            type: string
+            format: data-time
+          updatedAt: 
+            type: string
+            format: data-time
+responses: 
+  '201':
+    description: Creates a order
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a order!
+            data: 
+              type: object
+              $ref: "../../components/schemas/carts/order.yaml"
+  '401':
+    $ref: "../../components/responses/401.yaml"
