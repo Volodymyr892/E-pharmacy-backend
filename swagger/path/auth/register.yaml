@@ -1,0 +1,12 @@
+tags:
+  - User
+summary: Register new User
+requestBody:
+  required: true
+  content: 
+    application/json:
+      schema:
+        $ref: "../../components/schemas/auth/register.yaml"
+responses:
+  200:
+    description: Logged in successfully

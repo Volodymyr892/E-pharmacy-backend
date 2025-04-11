@@ -36,6 +36,52 @@
     }
   ],
   "paths": {
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register new User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/register"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logged in successfully"
+          }
+        }
+      }
+    },
     "/api/customer-reviews": {
       "get": {
         "tags": [
@@ -645,6 +691,54 @@
       }
     },
     "schemas": {
+      "login": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "strongPassword123"
+          }
+        }
+      },
+      "register": {
+        "type": "object",
+        "required": [
+          "nama",
+          "email",
+          "phone",
+          "password"
+        ],
+        "properties": {
+          "nama": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+380991234567"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "strongPassword123"
+          }
+        }
+      },
       "reviews": {
         "type": "object",
         "required": [
