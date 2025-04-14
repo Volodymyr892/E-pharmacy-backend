@@ -36,6 +36,52 @@
     }
   ],
   "paths": {
+    "/api/user/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Logout user",
+        "description": "Ending the user session.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful logout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "string",
+                    "example": "User successfully log out"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Неавторизовано (відсутній або недійсний токен)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/user/login": {
       "post": {
         "tags": [
