@@ -18,8 +18,11 @@ tags:
     description: Operations stores.
 servers:
   - url: http://localhost:3000
-  - url: https://example.com/api/v1
+  - url: https://E-pharmacy-frontend/api/v1
 paths:
+  /api/user/user-info:
+    get: 
+      $ref: "../swagger/path/auth/get.yaml"
   /api/user/logout:
     get: 
       $ref: "../swagger/path/auth/logout.yaml"

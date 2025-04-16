@@ -1,0 +1,14 @@
+tags:
+  - User
+summary: Get for user info
+security:
+  - bearerAuth: []
+responses: 
+  '200':
+    description: Current user
+    content: 
+      application/json:
+        schema:
+          $ref: "../../components/schemas/auth/user.yaml"
+  '401':
+    $ref: "../../components/responses/401.yaml"
