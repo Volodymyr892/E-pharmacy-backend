@@ -37,3 +37,27 @@
       description: "Product image URL"
       type: string
       example: "https://example.com/image.jpg"
+    reviews:
+      description: "List of product reviews"
+      type: array
+      items:
+        type: object
+        required:
+          - user
+          - rating
+          - comment
+        properties:
+          user:
+            description: "Reviewer’s user ID or name"
+            type: string
+            example: "john_doe"
+          rating:
+            description: "Star rating from 1 to 5"
+            type: number
+            minimum: 1
+            maximum: 5
+            example: 4
+          comment:
+            description: "Review text"
+            type: string
+            example: "Great phone with excellent battery life."
