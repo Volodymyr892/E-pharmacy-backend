@@ -1147,6 +1147,11 @@
             "type": "string",
             "example": "https://example.com/image.jpg"
           },
+          "description": {
+            "description": "Detailed description of the product",
+            "type": "string",
+            "example": "The iPhone 13 features a sleek design, powerful A15 Bionic chip, and an improved dual-camera system."
+          },
           "reviews": {
             "description": "List of product reviews",
             "type": "array",
