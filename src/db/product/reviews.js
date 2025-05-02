@@ -9,7 +9,11 @@ const reviewsSchema = new Schema(
         testimonial:{
         type: String,
             required: true,
-        }
+        },
+        avatar: {
+            type: String,
+            required: false, // або true, якщо аватарка обов'язкова
+        },
     },
     {
         timestamps: true,

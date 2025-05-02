@@ -12,6 +12,10 @@ properties:
   testimonial:
     type: string
     example: "This service was excellent"
+  avatar:
+    type: string
+    format: uri
+    example: "https://example.com/avatar.jpg"
   createdAt: 
     type: string
     format: date-time
